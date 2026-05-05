@@ -16,7 +16,7 @@ public class Fecha
     public Fecha()
     {
         // initialise instance variables
-        x = 0;
+        x = 13;
     }
 
     /**
