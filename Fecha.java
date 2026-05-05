@@ -9,6 +9,7 @@ public class Fecha
 {
     
     public Fecha(int dia, int mes, int anho) {
+        public
         
     }
     
