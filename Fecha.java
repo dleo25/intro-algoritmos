@@ -7,31 +7,32 @@
  */
 public class Fecha
 {
-    private int ddia;
-    private int mmes;
-    private int aanho;
+    private int dia;
+    private int mes;
+    private int anho;
     
-    public Fecha(int dia, int mes, int anho) {
-        assert esValida() == true : "dont be...";
-
-        ddia = dia;
-        mmes = mes;
-        aanho = anho;
+    public Fecha(int ddia, int mmes, int aanho) {
+        assert esValida();
+        dia = ddia;
+        mes = mmes;
+        anho = aanho;
         
         
     }
         
+    
         public boolean esBisiesto() {
-        if (aanho % 4 != 0) {
+        if (anho % 4 != 0) {
             return false;
-        }   else if (aanho % 100 != 0) {
+        }   else if (anho % 100 != 0) {
             return true;
-        }   else if (aanho % 400 == 0) {
+        }   else if (anho % 400 == 0) {
             return true;
         }   else {
             return false;
             }
     }
+    
     public int cantAnho(){
         if (esBisiesto() == true){
             return 366;
@@ -40,9 +41,9 @@ public class Fecha
             return 365;
         }
     }
-    public boolean esValida(){
-        
-        if( aanho >= 1582 && ddia <= 31 && mmes <= 12)
+    
+    private boolean esValida(){
+        if( anho >= 1582 && dia <= 31 && mes <= 12)
         {
             return true;
         }
@@ -50,5 +51,17 @@ public class Fecha
             return false;
             }
         }
-    }
     
+    //consula que dado un mes nos diga cuantos dias tiene ese mes
+    public int cantDiasMes(int mmes){
+        if(mmes == 1 ||mmes == 3|| mmes == 5||mmes == 7||mmes == 8||mmes ==10||mmes == 12){
+            return 31;
+        }
+        else if (mes == 4||mmes == 6||mmes == 9||mmes == 11){
+            return 30;
+        }
+        else {
+            return 28;
+        }
+    }    
+}
