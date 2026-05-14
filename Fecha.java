@@ -1,10 +1,4 @@
 
-/**
- * Write a description of class prueba here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Fecha
 {
     private int dia;
@@ -12,7 +6,9 @@ public class Fecha
     private int anho;
     
     public Fecha(int ddia, int mmes, int aanho) {
-        assert esValida();
+        
+        assert esValida(ddia, mmes, aanho);
+        
         dia = ddia;
         mes = mmes;
         anho = aanho;
@@ -42,8 +38,8 @@ public class Fecha
         }
     }
     
-    private boolean esValida(){
-        if( anho >= 1582 && dia <= 31 && mes <= 12)
+    private boolean esValida(int ddia, int mmes, int aanho){
+        if( aanho >= 1582 && aanho <= 2026 && ddia <= 31 && mmes <= 12)
         {
             return true;
         }
@@ -57,11 +53,60 @@ public class Fecha
         if(mmes == 1 ||mmes == 3|| mmes == 5||mmes == 7||mmes == 8||mmes ==10||mmes == 12){
             return 31;
         }
-        else if (mes == 4||mmes == 6||mmes == 9||mmes == 11){
+        else if (mmes == 4||mmes == 6||mmes == 9||mmes == 11){
             return 30;
         }
         else {
-            return 28;
+            if(esBisiesto()){
+                return 29;
+            }
+            else {
+                return 28;
+            }
         }
     }    
+    
+    public void cambiarDia(int nuevoDia){
+        assert esValida(nuevoDia, mes, anho);
+        dia = nuevoDia;
+    }
+    
+    public void cambiarMes(int nuevoMes){
+        assert esValida(dia, nuevoMes, anho);
+        mes = nuevoMes;
+    }
+    
+    public void cambiarAño(int nuevoAño){
+        assert esValida(dia, mes, nuevoAño);
+        anho = nuevoAño;
+    }
+    
+    public int obtenerDia(){
+        return dia;
+    }
+    
+    public int obtenerMes(){
+        return mes;
+    }
+    
+    public int obtenerAño(){
+        return anho;
+    }
+    
+    public String obtenerFecha(){
+        return dia + "/" + mes + "/" + anho;
+    }
+    
+    public boolean equals(Fecha otraFecha){
+        if (dia == otraFecha.obtenerDia()){
+            if (mes == otraFecha.obtenerMes()){
+                if (anho == otraFecha.obtenerAño()){
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
 }
